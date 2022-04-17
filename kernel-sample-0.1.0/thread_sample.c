@@ -31,7 +31,7 @@ static void thread1_entry(void *parameter)
     {
         /* 线程1采用低优先级运行，一直打印计数值 */
         rt_kprintf("thread1 count: %d\n", count ++);
-        rt_thread_mdelay(500);
+        rt_thread_mdelay(250);
     }
 }
 
@@ -52,7 +52,7 @@ static void thread2_entry(void *param)
      while (1)
     {
         rt_kprintf("thread2 count: %d\n", count ++);
-        rt_thread_mdelay(500);
+        rt_thread_mdelay(250);
     }
     //rt_kprintf("thread2 exit\n");
     /* 线程2运行结束后也将自动被系统删除
