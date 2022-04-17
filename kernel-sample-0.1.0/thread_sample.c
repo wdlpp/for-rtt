@@ -44,12 +44,17 @@ static void thread2_entry(void *param)
     rt_uint32_t count = 0;
 
     /* 线程2拥有较高的优先级，以抢占线程1而获得执行 */
-    for (count = 0; count < 10 ; count++)
-    {
+    //for (count = 0; count < 10 ; count++)
+    //{
         /* 线程2打印计数值 */
-        rt_kprintf("thread2 count: %d\n", count);
+    //    rt_kprintf("thread2 count: %d\n", count);
+    //}
+     while (1)
+    {
+        rt_kprintf("thread2 count: %d\n", count ++);
+        rt_thread_mdelay(500);
     }
-    rt_kprintf("thread2 exit\n");
+    //rt_kprintf("thread2 exit\n");
     /* 线程2运行结束后也将自动被系统删除
     (线程控制块和线程栈依然在idle线程中释放) */
 }
