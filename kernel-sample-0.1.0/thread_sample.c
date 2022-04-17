@@ -80,8 +80,6 @@ int thread_sample(void)
                    sizeof(thread2_stack),
                    THREAD_PRIORITY - 1, THREAD_TIMESLICE);
     rt_thread_startup(&thread2);
-    for (int i = 0;i < 10;i++)
-    {
         //首先延时500ms，让thread2跑一次
         //挂起线程2
         rt_thread_suspend(&thread2);
@@ -91,7 +89,6 @@ int thread_sample(void)
         //恢复运行
         rt_thread_resume(&thread2);
         rt_thread_resume(tid1);
-    }
     return 0;
 }
 
