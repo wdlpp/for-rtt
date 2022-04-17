@@ -66,7 +66,7 @@ int thread_sample(void)
     tid1 = rt_thread_create("thread1",
                             thread1_entry, RT_NULL,
                             THREAD_STACK_SIZE,
-                            THREAD_PRIORITY, THREAD_TIMESLICE);
+                            THREAD_PRIORITY-1, THREAD_TIMESLICE);
     
     /* 如果获得线程控制块，启动这个线程 */
     if (tid1 != RT_NULL)
@@ -78,17 +78,17 @@ int thread_sample(void)
                    RT_NULL,
                    &thread2_stack[0],
                    sizeof(thread2_stack),
-                   THREAD_PRIORITY - 1, THREAD_TIMESLICE);
+                   THREAD_PRIORITY, THREAD_TIMESLICE);
     rt_thread_startup(&thread2);
-        //首先延时500ms，让thread2跑一次
-        //挂起线程2
-        rt_thread_suspend(&thread2);
-        //此时线程一运行一次
-        //rt_thread_mdelay(500);
-        rt_thread_suspend(tid1);
-        //恢复运行
-        rt_thread_resume(&thread2);
-        rt_thread_resume(tid1);
+//        //首先延时500ms，让thread2跑一次
+//        //挂起线程2
+//        rt_thread_suspend(&thread2);
+//        //此时线程一运行一次
+//        //rt_thread_mdelay(500);
+//        rt_thread_suspend(tid1);
+//        //恢复运行
+//        rt_thread_resume(&thread2);
+//        rt_thread_resume(tid1);
     return 0;
 }
 
