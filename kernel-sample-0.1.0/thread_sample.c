@@ -71,7 +71,6 @@ int thread_sample(void)
     /* 如果获得线程控制块，启动这个线程 */
     if (tid1 != RT_NULL)
         rt_thread_startup(tid1);
-
     /* 初始化线程2，名称是thread2，入口是thread2_entry */
     rt_thread_init(&thread2,
                    "thread2",
@@ -81,7 +80,18 @@ int thread_sample(void)
                    sizeof(thread2_stack),
                    THREAD_PRIORITY - 1, THREAD_TIMESLICE);
     rt_thread_startup(&thread2);
-
+    for (int i = 0;i < 10;i++)
+    {
+        //首先延时500ms，让thread2跑一次
+        //挂起线程2
+        rt_thread_suspend(&thread2);
+        //此时线程一运行一次
+        //rt_thread_mdelay(500);
+        rt_thread_suspend(tid1);
+        //恢复运行
+        rt_thread_resume(&thread2);
+        rt_thread_resume(tid1);
+    }
     return 0;
 }
 
