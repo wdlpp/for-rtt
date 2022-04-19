@@ -80,16 +80,8 @@ int thread_sample(void)
                    sizeof(thread2_stack),
                    THREAD_PRIORITY-1, THREAD_TIMESLICE);
     rt_thread_startup(&thread2);
-//        //首先延时500ms，让thread2跑一次
-//        //挂起线程2
-//        rt_thread_suspend(&thread2);
-//        //此时线程一运行一次
-//        //rt_thread_mdelay(500);
-//        rt_thread_suspend(tid1);
-//        //恢复运行
-//        rt_thread_resume(&thread2);
-//        rt_thread_resume(tid1);
     return 0;
+    //这里比较奇怪，貌似线程1和线程2优先级的设置不会影响最终的结果
 }
 
 /* 导出到 msh 命令列表中 */
