@@ -27,8 +27,10 @@
 
 #define LED_PIN	3
 
+
 int main(void)
 {
+<<<<<<< HEAD
     // int creat_thread_timeslice();
     // int flag=creat_thread_timeslice();
     // if(flag==-1)rt_kprintf("创建失败\n");
@@ -36,6 +38,12 @@ int main(void)
     int flag=timer_entry();
     if(flag==-1)rt_kprintf("创建失败\n");
     return 0;
+=======
+//    int creat_thread_timeslice();
+//    int flag=creat_thread_timeslice();
+//    if(flag==-1)rt_kprintf("创建失败\n");
+//    return 0;
+>>>>>>> b9437bb82e00c224432cf40a94dbf5ca20347f95
 }
 
 int led(void)

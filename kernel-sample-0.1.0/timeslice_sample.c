@@ -22,17 +22,29 @@
 #define THREAD_TIMESLICE    10
 
 /* 线程入口 */
-static void thread_entry(void* parameter)
+static void thread1_entry(void* parameter)
 {
-    rt_uint32_t value;
     rt_uint32_t count = 0;
-
-    value = (rt_uint32_t)parameter;
     while (1)
     {
         if(0 == (count % 5))
         {           
-            rt_kprintf("thread %d is running ,thread %d count = %d\n", value , value , count);      
+            rt_kprintf("thread1 is running ,thread1 count = %d\n", count);      
+
+            if(count > 200)
+                return;            
+        }
+         count++;
+     }  
+}
+static void thread2_entry(void* parameter)
+{
+    rt_uint32_t count = 0;
+    while (1)
+    {
+        if(0 == (count % 5))
+        {           
+            rt_kprintf("thread2 is running ,thread2 count = %d\n", count);      
 
             if(count > 200)
                 return;            
@@ -43,23 +55,23 @@ static void thread_entry(void* parameter)
 
 int timeslice_sample(void)
 {
-    rt_thread_t tid;
+    rt_thread_t tid1,tid2;
     /* 创建线程1 */
-    tid = rt_thread_create("thread1", 
-                            thread_entry, (void*)1, 
-                            THREAD_STACK_SIZE, 
-                            THREAD_PRIORITY, THREAD_TIMESLICE); 
-    if (tid != RT_NULL) 
-        rt_thread_startup(tid);
+    tid1 = rt_thread_create("thread1",
+                            thread1_entry, RT_NULL,
+                            THREAD_STACK_SIZE,
+                            THREAD_PRIORITY, THREAD_TIMESLICE);
+    if (tid1 != RT_NULL) 
+        rt_thread_startup(tid1);
 
 
     /* 创建线程2 */
-    tid = rt_thread_create("thread2", 
-                            thread_entry, (void*)2,
-                            THREAD_STACK_SIZE, 
-                            THREAD_PRIORITY, THREAD_TIMESLICE-5);
-    if (tid != RT_NULL) 
-        rt_thread_startup(tid);
+    tid2 = rt_thread_create("thread2",
+                            thread2_entry, RT_NULL,
+                            THREAD_STACK_SIZE,
+                            THREAD_PRIORITY, THREAD_TIMESLICE+5);
+    if (tid2 != RT_NULL) 
+        rt_thread_startup(tid2);
     return 0;
 }
 
