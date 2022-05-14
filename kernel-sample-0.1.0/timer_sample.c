@@ -24,20 +24,19 @@ static int cnt = 0;
 /* 定时器1超时函数 */
 static void timeout1(void *parameter)
 {
+    cnt ++;
     rt_kprintf("periodic timer is timeout %d\n", cnt);
-
-    /* 运行第10次，停止周期定时器 */
-    if (cnt++ >= 9)
+    if (cnt==10)
     {
         rt_timer_stop(timer1);
-        rt_kprintf("periodic timer was stopped! \n");
+        rt_kprintf("Thread1 now is over! \n");
     }
 }
 
 /* 定时器2超时函数 */
 static void timeout2(void *parameter)
 {
-    rt_kprintf("one shot timer is timeout\n");
+    rt_kprintf("Thread2 is coming!\n");
 }
 
 int timer_sample(void)
