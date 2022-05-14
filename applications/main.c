@@ -29,8 +29,11 @@
 
 int main(void)
 {
-    int creat_thread_timeslice();
-    int flag=creat_thread_timeslice();
+    // int creat_thread_timeslice();
+    // int flag=creat_thread_timeslice();
+    // if(flag==-1)rt_kprintf("创建失败\n");
+    int timer_entry();
+    int flag=timer_entry();
     if(flag==-1)rt_kprintf("创建失败\n");
     return 0;
 }
