@@ -326,3 +326,9 @@ rtthread.bin
 EventRecorderStub.scvd
 project.uvguix.a2230
 .vscode/uv4.log
+build/wdl-timer.crf
+build/wdl-timer.d
+build/wdl-timer.o
+build/wdl-timeslice.crf
+build/wdl-timeslice.d
+build/wdl-timeslice.o
