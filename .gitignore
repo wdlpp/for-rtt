@@ -332,3 +332,6 @@ build/wdl-timer.o
 build/wdl-timeslice.crf
 build/wdl-timeslice.d
 build/wdl-timeslice.o
+build/code.crf
+build/code.d
+build/code.o
